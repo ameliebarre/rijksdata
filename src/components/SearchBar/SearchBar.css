@@ -1,7 +1,7 @@
 .searchbar {
   display: grid;
   grid-gap: 10px;
-  margin: 40px 50px;
+  padding: 40px 50px;
 }
 
 .searchbar__label {
@@ -15,8 +15,15 @@
   color: #6b6b6b;
 }
 
+.searchbar__group {
+  display: flex;
+  gap: 10px;
+  width: 50%;
+}
+
 .searchbar__input {
   position: relative;
+  width: 100%;
 }
 
 .searchbar__input-field {
@@ -28,7 +35,7 @@
   color: #6b6b6b;
   border: 1px solid #9e9e9e;
   height: 42px;
-  width: 50%;
+  width: 100%;
 }
 
 .searchbar__input-field:focus {
@@ -43,14 +50,25 @@
   transform: translateY(-50%);
 }
 
+.searchbar__button {
+  background-color: #a08334;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  width: 200px;
+  height: 42px;
+}
+
 @media screen and (max-width: 1480px) {
   .searchbar {
     margin: 40px 30px;
+    padding: 40px 0;
   }
 }
 
 @media screen and (max-width: 980px) {
-  .searchbar__input-field {
+  .searchbar__group {
     width: 100%;
   }
 }

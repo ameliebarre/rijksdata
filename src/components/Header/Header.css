@@ -1,12 +1,15 @@
 .header {
-  position: sticky;
+  position: fixed;
   display: flex;
   align-items: center;
-  background: red;
   padding: 15px 40px;
-  background-color: #FFF;
+  background-color: #fff;
   border-bottom: 1px solid #eee;
   justify-content: space-between;
+  width: 100%;
+  top: 0;
+  height: 100px;
+  z-index: 100;
 }
 
 .header__title {

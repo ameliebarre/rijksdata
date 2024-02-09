@@ -1,8 +1,15 @@
 import { BiSearch as SearchIcon } from "react-icons/bi";
 
 import "./SearchBar.css";
+import { useState } from "react";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  onSearchValue: (value: string) => void;
+};
+
+const SearchBar = ({ onSearchValue }: SearchBarProps) => {
+  const [searchedValue, setSearchedValue] = useState("");
+
   return (
     <div className="searchbar">
       <div>
@@ -13,17 +20,27 @@ const SearchBar = () => {
           Thousand of works and collections.
         </span>
       </div>
-      <div className="searchbar__input">
-        <SearchIcon
-          size={20}
-          fill="#9e9e9e"
-          className="searchbar__input-icon"
-        />
-        <input
-          id="searchbar"
-          className="searchbar__input-field"
-          placeholder="Search by..."
-        />
+      <div className="searchbar__group">
+        <div className="searchbar__input">
+          <SearchIcon
+            size={20}
+            fill="#9e9e9e"
+            className="searchbar__input-icon"
+          />
+          <input
+            id="searchbar"
+            className="searchbar__input-field"
+            placeholder="Rembrandt Van Rijn"
+            onChange={(e) => setSearchedValue(e.target.value)}
+          />
+        </div>
+        <button
+          type="button"
+          className="searchbar__button"
+          onClick={() => onSearchValue(searchedValue)}
+        >
+          Search
+        </button>
       </div>
     </div>
   );

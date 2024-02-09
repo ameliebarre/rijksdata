@@ -1,44 +1,32 @@
-import { useInfiniteQuery, keepPreviousData } from "@tanstack/react-query";
-
-import { GET } from "../../api/apiHelpers";
-
 import "./HomeGallery.css";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-const RESULTS_PER_PAGE = 10;
+type HomeGalleryProps = {
+  data: any;
+  fetchNextPage: () => void;
+  isFetchingNextPage: boolean;
+  isLoading: boolean;
+  isFetching: boolean;
+};
 
-const HomeGallery = () => {
-  const {
-    data: collection,
-    fetchNextPage,
-    isFetching,
-    isLoading,
-    isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ["collection"],
-    queryFn: ({ pageParam }) =>
-      GET({
-        url: `/collection?key=${API_KEY}&ps=${RESULTS_PER_PAGE}&p=${pageParam}`,
-      }),
-    initialPageParam: 0,
-    getNextPageParam: (_, allPages) => {
-      return allPages.length + 1;
-    },
-    placeholderData: keepPreviousData,
-  });
-
+const HomeGallery = ({
+  data,
+  fetchNextPage,
+  isLoading,
+  isFetching,
+  isFetchingNextPage,
+}: HomeGalleryProps) => {
   const handleFetchNextPage = () => {
     fetchNextPage();
   };
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2 className="loading">Loading...</h2>;
   }
 
   return (
     <>
       <div className="gallery">
-        {collection?.pages.map((collection: any) => {
+        {data?.pages.map((collection: any) => {
           return collection.artObjects.map((object: any) => {
             return (
               <div key={object.id} className="gallery__item">
