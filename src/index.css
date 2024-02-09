@@ -1,17 +1,17 @@
 /* Simple CSS Reset */
 :root {
   font-family: "Roboto", system-ui, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 }
 
-*,
-*::before,
-*::after {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
+  min-height: 100vh;
+  overflow-x: hidden;
   background-color: #F8F6F0;
 }
 
