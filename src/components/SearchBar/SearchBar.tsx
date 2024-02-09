@@ -10,7 +10,7 @@ const SearchBar = () => {
           Search
         </label>
         <span className="searchbar__legend">
-          Millions of works and collections.
+          Thousand of works and collections.
         </span>
       </div>
       <div className="searchbar__input">
