@@ -3,6 +3,7 @@ import "./HomeGallery.css";
 type HomeGalleryProps = {
   data: any;
   fetchNextPage: () => void;
+  onItemClick: () => void;
   isFetchingNextPage: boolean;
   isLoading: boolean;
   isFetching: boolean;
@@ -11,6 +12,7 @@ type HomeGalleryProps = {
 const HomeGallery = ({
   data,
   fetchNextPage,
+  onItemClick,
   isLoading,
   isFetching,
   isFetchingNextPage,
@@ -29,7 +31,11 @@ const HomeGallery = ({
         {data?.pages.map((collection: any) => {
           return collection.artObjects.map((object: any) => {
             return (
-              <div key={object.id} className="gallery__item">
+              <div
+                key={object.id}
+                className="gallery__item"
+                onClick={onItemClick}
+              >
                 <img
                   width={300}
                   height={400}

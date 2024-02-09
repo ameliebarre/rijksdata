@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import { useInfiniteQuery, keepPreviousData } from "@tanstack/react-query";
 
 import Header from "../../components/Header/Header";
@@ -6,12 +6,15 @@ import HomeGallery from "../../components/HomeGallery/HomeGallery";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import "./page.css";
 import { GET } from "../../api/apiHelpers";
+import Modal from "../../components/Modal/Modal";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const RESULTS_PER_PAGE = 10;
 
 const Homepage = () => {
   const [searchedValue, setSearchedValue] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
   const {
     data: collection,
     fetchNextPage,
@@ -32,10 +35,24 @@ const Homepage = () => {
     placeholderData: keepPreviousData,
   });
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = "scroll";
+    };
+  }, [isOpen]);
+
   const handleSearchSubmit = (value: string) => {
     const formatSearchedValue = value.toLowerCase().split(" ").join("+");
     setSearchedValue(formatSearchedValue);
     refetch();
+  };
+
+  const handleOpenModal = () => {
+    setIsOpen(true);
   };
 
   return (
@@ -49,8 +66,12 @@ const Homepage = () => {
           isFetching={isFetching}
           isLoading={isLoading}
           isFetchingNextPage={isFetchingNextPage}
+          onItemClick={handleOpenModal}
         />
       </div>
+      <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
+        This is Modal Content!
+      </Modal>
     </>
   );
 };
