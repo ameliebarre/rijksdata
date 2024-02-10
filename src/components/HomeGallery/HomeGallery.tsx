@@ -6,7 +6,7 @@ import "./HomeGallery.css";
 type HomeGalleryProps = {
   data?: InfiniteData<Collection, unknown>;
   fetchNextPage: () => void;
-  onItemClick: () => void;
+  onItemClick: (objectNumber: string) => void;
   isFetchingNextPage: boolean;
   isLoading: boolean;
 };
@@ -35,7 +35,7 @@ const HomeGallery = ({
               <div
                 key={object.id}
                 className="gallery__item"
-                onClick={onItemClick}
+                onClick={() => onItemClick(object.objectNumber)}
               >
                 <img
                   width={300}

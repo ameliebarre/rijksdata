@@ -4,10 +4,11 @@ import { useInfiniteQuery, keepPreviousData } from "@tanstack/react-query";
 import { Header, HomeGallery, SearchBar, Modal } from "@/components";
 import fetchCollection from "@/services/fetchCollection";
 import "./page.css";
+import ArtObjectPreview from "@/components/ArtObjectPreview/ArtObjectPreview";
 
 const Homepage = () => {
   const [searchedValue, setSearchedValue] = useState("");
-  //const [collectionDetails, setCollectionDetails] = useState(null);
+  const [openedArtObject, setOpenedArtObject] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const {
@@ -17,7 +18,7 @@ const Homepage = () => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["collection"],
+    queryKey: ["details"],
     queryFn: ({ pageParam }) => fetchCollection(pageParam, searchedValue),
     initialPageParam: 0,
     getNextPageParam: (_, allPages) => {
@@ -25,8 +26,6 @@ const Homepage = () => {
     },
     placeholderData: keepPreviousData,
   });
-
-  console.log(collection);
 
   useEffect(() => {
     if (isOpen) {
@@ -44,9 +43,9 @@ const Homepage = () => {
     refetch();
   };
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (objectNumber: string) => {
     setIsOpen(true);
-    //setCollectionDetails();
+    setOpenedArtObject(objectNumber);
   };
 
   return (
@@ -63,7 +62,7 @@ const Homepage = () => {
         />
       </div>
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-        This is Modal Content!
+        <ArtObjectPreview objectNumber={openedArtObject} />
       </Modal>
     </>
   );

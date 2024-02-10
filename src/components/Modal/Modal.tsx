@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { CgCloseO as CloseIcon } from "react-icons/cg";
+
+import { Portal } from "@/components";
 import "./Modal.css";
-import Portal from "../Portal/Portal";
 
 type ModalProps = {
   children: React.ReactNode;
@@ -24,9 +26,19 @@ const Modal = ({ children, isOpen, handleClose }: ModalProps) => {
 
   return (
     <Portal wrapperId="react-portal-modal-container">
+      {/* <div classNameName="overlay" onClick={handleClose} /> */}
+      {/* <div classNameName="modal">
+        <div classNameName="modal__container">
+          <button classNameName="modal__close-button" onClick={handleClose}>
+            <CloseIcon size={25} />
+          </button>
+          <div classNameName="modal__body">{children}</div>
+        </div>
+      </div> */}
+      <div className="overlay" />
       <div className="modal">
-        <button onClick={handleClose} className="modal__close-button">
-          Close
+        <button className="modal__close" onClick={handleClose}>
+          <CloseIcon size={25} />
         </button>
         <div className="modal__content">{children}</div>
       </div>

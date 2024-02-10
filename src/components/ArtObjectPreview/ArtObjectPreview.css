@@ -1,0 +1,77 @@
+.object {
+  display: flex;
+  gap: 20px;
+}
+
+.object__image {
+  width: 300px;
+  height: 300px;
+}
+
+.object__image img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.object__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.object__details-title {
+  font-family: "Playfair Display", Arial, Helvetica, sans-serif;
+  line-height: 1;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.object__details-description {
+  line-height: 1.5;
+  margin-top: 20px;
+}
+
+.object__view-details {
+  background-color: #a08334;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  width: 200px;
+}
+
+@media screen and (max-width: 780px) {
+  .object {
+    flex-direction: column;
+  }
+
+  .object__image {
+    width: 100%;
+    height: 400px;
+  }
+
+  .object__image img {
+    width: 100%;
+    height: 400px;
+  }
+
+  .object__container {
+    flex-direction: column;
+  }
+
+  .object__details-title {
+    text-align: center;
+  }
+
+  .object__details-description {
+    margin: 10px 0 20px;
+    text-align: center;
+  }
+
+  .object__view-details {
+    margin: 0 auto;
+  }
+}
