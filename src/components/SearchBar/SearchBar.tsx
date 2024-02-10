@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { BiSearch as SearchIcon } from "react-icons/bi";
 
 import "./SearchBar.css";
-import { useState } from "react";
 
 type SearchBarProps = {
   onSearchValue: (value: string) => void;

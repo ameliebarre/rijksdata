@@ -1,12 +1,14 @@
+import { InfiniteData } from "@tanstack/react-query";
+
+import { ArtObject, Collection } from "@/interfaces/collection";
 import "./HomeGallery.css";
 
 type HomeGalleryProps = {
-  data: any;
+  data?: InfiniteData<Collection, unknown>;
   fetchNextPage: () => void;
   onItemClick: () => void;
   isFetchingNextPage: boolean;
   isLoading: boolean;
-  isFetching: boolean;
 };
 
 const HomeGallery = ({
@@ -14,7 +16,6 @@ const HomeGallery = ({
   fetchNextPage,
   onItemClick,
   isLoading,
-  isFetching,
   isFetchingNextPage,
 }: HomeGalleryProps) => {
   const handleFetchNextPage = () => {
@@ -28,8 +29,8 @@ const HomeGallery = ({
   return (
     <>
       <div className="gallery">
-        {data?.pages.map((collection: any) => {
-          return collection.artObjects.map((object: any) => {
+        {data?.pages.map((collection: Collection) => {
+          return collection?.artObjects.map((object: ArtObject) => {
             return (
               <div
                 key={object.id}
@@ -57,9 +58,8 @@ const HomeGallery = ({
           disabled={isFetchingNextPage}
           onClick={handleFetchNextPage}
         >
-          Load more
+          {isFetchingNextPage ? "Loading..." : "Load more"}
         </button>
-        <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div>
       </div>
     </>
   );

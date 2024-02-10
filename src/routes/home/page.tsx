@@ -1,39 +1,32 @@
 import { useEffect, useState } from "react";
 import { useInfiniteQuery, keepPreviousData } from "@tanstack/react-query";
 
-import Header from "../../components/Header/Header";
-import HomeGallery from "../../components/HomeGallery/HomeGallery";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import { Header, HomeGallery, SearchBar, Modal } from "@/components";
+import fetchCollection from "@/services/fetchCollection";
 import "./page.css";
-import { GET } from "../../api/apiHelpers";
-import Modal from "../../components/Modal/Modal";
-
-const API_KEY = import.meta.env.VITE_API_KEY;
-const RESULTS_PER_PAGE = 10;
 
 const Homepage = () => {
   const [searchedValue, setSearchedValue] = useState("");
+  //const [collectionDetails, setCollectionDetails] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const {
     data: collection,
     fetchNextPage,
-    isFetching,
     isLoading,
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery({
     queryKey: ["collection"],
-    queryFn: ({ pageParam }) =>
-      GET({
-        url: `/collection?key=${API_KEY}&ps=${RESULTS_PER_PAGE}&p=${pageParam}&q=${searchedValue}`,
-      }),
+    queryFn: ({ pageParam }) => fetchCollection(pageParam, searchedValue),
     initialPageParam: 0,
     getNextPageParam: (_, allPages) => {
       return allPages.length + 1;
     },
     placeholderData: keepPreviousData,
   });
+
+  console.log(collection);
 
   useEffect(() => {
     if (isOpen) {
@@ -53,6 +46,7 @@ const Homepage = () => {
 
   const handleOpenModal = () => {
     setIsOpen(true);
+    //setCollectionDetails();
   };
 
   return (
@@ -63,7 +57,6 @@ const Homepage = () => {
         <HomeGallery
           data={collection}
           fetchNextPage={fetchNextPage}
-          isFetching={isFetching}
           isLoading={isLoading}
           isFetchingNextPage={isFetchingNextPage}
           onItemClick={handleOpenModal}
