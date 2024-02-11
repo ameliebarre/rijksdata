@@ -41,23 +41,23 @@ const HomeGallery = ({
       <div className="gallery">
         {data?.pages.map((collection: Collection) => {
           return collection?.artObjects.map((object: ArtObject) => {
-            return (
+            return object?.webImage?.url ? (
               <div
-                key={object.id}
+                key={object?.id}
                 className="gallery__item"
-                onClick={() => onItemClick(object.objectNumber)}
+                onClick={() => onItemClick(object?.objectNumber)}
               >
                 <img
                   width={300}
                   height={400}
-                  src={object.webImage.url}
-                  alt={object.title}
+                  src={object?.webImage?.url}
+                  alt={object?.title}
                 />
                 <div className="gallery__item-overlay">
-                  <span className="gallery__item-title">{object.title}</span>
+                  <span className="gallery__item-title">{object?.title}</span>
                 </div>
               </div>
-            );
+            ) : null;
           });
         })}
       </div>

@@ -18,7 +18,7 @@ const Homepage = () => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["collection"],
+    queryKey: ["collection", searchedValue],
     queryFn: ({ pageParam }) => fetchCollection(pageParam, searchedValue),
     initialPageParam: 0,
     getNextPageParam: (_, allPages) => {
@@ -26,6 +26,8 @@ const Homepage = () => {
     },
     placeholderData: keepPreviousData,
   });
+
+  console.log("COLLECTION : ", collection);
 
   useEffect(() => {
     if (isOpen) {
