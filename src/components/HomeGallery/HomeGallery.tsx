@@ -1,4 +1,5 @@
 import { InfiniteData } from "@tanstack/react-query";
+import DotLoader from "react-spinners/ClipLoader";
 
 import { ArtObject, Collection } from "@/interfaces/collection";
 import "./HomeGallery.css";
@@ -23,7 +24,16 @@ const HomeGallery = ({
   };
 
   if (isLoading) {
-    return <h2 className="loading">Loading...</h2>;
+    return (
+      <div className="loading">
+        <DotLoader
+          color="#6b6b6b"
+          size={90}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
 
   return (

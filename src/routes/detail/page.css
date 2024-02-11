@@ -1,0 +1,127 @@
+.back {
+  padding: 20px 50px;
+}
+
+.back__button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #cccccc;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #6b6b6b;
+  border: none;
+  font-weight: 500;
+  padding: 15px;
+  justify-content: space-around;
+  width: auto;
+}
+
+.object {
+  padding: 20px 50px 0 50px;
+  display: flex;
+  gap: 50px;
+}
+
+.object__detail-image {
+  border: 1px solid #000000;
+  padding: 10px;
+  width: 600px;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.object__detail-header {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.object__detail-header--title {
+  font-family: "Playfair Display", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.object__detail-header--colors {
+  display: flex;
+  gap: 10px;
+}
+
+.object__detail-header--colors > span {
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+}
+
+.object__detail-makers {
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.object__detail-date {
+  font-size: 16px;
+}
+
+.object__detail-makerLine {
+  margin-top: 30px;
+  font-size: 13px;
+  margin-bottom: 5px;
+  color: #6b6b6b;
+  font-style: italic;
+}
+
+.object__detail-description {
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.object__detail-materials {
+  display: flex;
+  gap: 10px;
+  margin: 30px 0 50px;
+}
+
+.object__detail-materials span {
+  background-color: #000000;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 10px 15px;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1280px) {
+  .object__detail-image {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .object__detail-image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .object__detail-header {
+    flex-direction: column;
+    align-items: start;
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .object {
+    flex-direction: column;
+  }
+
+  .object__detail-image {
+    width: 100%;
+    height: 500px;
+  }
+}

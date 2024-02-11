@@ -27,9 +27,15 @@ export interface ArtObjectDetails {
     links: {
       search: string;
     };
+    makers: {
+      dateOfBirth: string;
+      dateOfDeath: string;
+      name: string;
+    }[];
     location: string;
+    plaqueDescriptionEnglish: string;
+    plaqueDescriptionDutch: string;
     longTitle: string;
-    makers: string[];
     materials: string[];
     objectCollection: string[];
     objectNumber: string;

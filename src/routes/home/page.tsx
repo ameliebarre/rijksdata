@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useInfiniteQuery, keepPreviousData } from "@tanstack/react-query";
 
-import { Header, HomeGallery, SearchBar, Modal } from "@/components";
+import { HomeGallery, SearchBar, Modal } from "@/components";
 import fetchCollection from "@/services/fetchCollection";
 import "./page.css";
 import ArtObjectPreview from "@/components/ArtObjectPreview/ArtObjectPreview";
@@ -18,7 +18,7 @@ const Homepage = () => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["details"],
+    queryKey: ["collection"],
     queryFn: ({ pageParam }) => fetchCollection(pageParam, searchedValue),
     initialPageParam: 0,
     getNextPageParam: (_, allPages) => {
@@ -50,17 +50,14 @@ const Homepage = () => {
 
   return (
     <>
-      <Header />
-      <div className="container">
-        <SearchBar onSearchValue={handleSearchSubmit} />
-        <HomeGallery
-          data={collection}
-          fetchNextPage={fetchNextPage}
-          isLoading={isLoading}
-          isFetchingNextPage={isFetchingNextPage}
-          onItemClick={handleOpenModal}
-        />
-      </div>
+      <SearchBar onSearchValue={handleSearchSubmit} />
+      <HomeGallery
+        data={collection}
+        fetchNextPage={fetchNextPage}
+        isLoading={isLoading}
+        isFetchingNextPage={isFetchingNextPage}
+        onItemClick={handleOpenModal}
+      />
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
         <ArtObjectPreview objectNumber={openedArtObject} />
       </Modal>

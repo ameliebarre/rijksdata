@@ -67,7 +67,7 @@
   }
 }
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 1200px) {
   .searchbar__group {
     width: 100%;
   }
