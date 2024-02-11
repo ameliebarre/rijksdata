@@ -1,6 +1,7 @@
 .preview {
   display: flex;
   gap: 20px;
+  padding: 0 40px 40px 40px;
 }
 
 .preview__image {
@@ -30,7 +31,7 @@
 
 .preview__details-description {
   line-height: 1.5;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .preview__view-details {
@@ -41,6 +42,12 @@
   border: none;
   padding: 10px;
   width: 200px;
+}
+
+@media screen and (max-width: 1280px) {
+  .preview__image img {
+    width: 200px;
+  }
 }
 
 @media screen and (max-width: 780px) {

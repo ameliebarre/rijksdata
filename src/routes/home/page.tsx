@@ -27,8 +27,6 @@ const Homepage = () => {
     placeholderData: keepPreviousData,
   });
 
-  console.log("COLLECTION : ", collection);
-
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";

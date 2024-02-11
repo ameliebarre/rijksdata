@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import DotLoader from "react-spinners/ClipLoader";
 
 import fetchObjectDetails from "@/services/fetchObjectDetails";
 import "./ArtObjectPreview.css";
@@ -10,10 +11,23 @@ type ArtObjectPreviewProps = {
 
 const ArtObjectPreview = ({ objectNumber }: ArtObjectPreviewProps) => {
   const navigate = useNavigate();
-  const { data: object } = useQuery({
-    queryKey: ["details"],
+  const { data: object, isFetching } = useQuery({
+    queryKey: ["details", objectNumber],
     queryFn: () => fetchObjectDetails(objectNumber),
   });
+
+  if (isFetching) {
+    return (
+      <div className="loading">
+        <DotLoader
+          color="#6b6b6b"
+          size={90}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="preview">

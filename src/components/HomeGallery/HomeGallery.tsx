@@ -40,7 +40,7 @@ const HomeGallery = ({
     <>
       <div className="gallery">
         {data?.pages.map((collection: Collection) => {
-          return collection?.artObjects.map((object: ArtObject) => {
+          return collection?.artObjects?.map((object: ArtObject) => {
             return object?.webImage?.url ? (
               <div
                 key={object?.id}
